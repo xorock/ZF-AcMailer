@@ -51,6 +51,10 @@ class MailService implements MailServiceInterface, EventManagerAwareInterface, M
      * @var DefaultLayoutInterface
      */
     private $defaultLayout;
+    /**
+     * @var array|\ArrayAccess|object The mail event parameters
+     */
+    private $mailEventParams = [];
 
     /**
      * Creates a new MailService
@@ -105,6 +109,8 @@ class MailService implements MailServiceInterface, EventManagerAwareInterface, M
             if (! $e instanceof ZendMailException) {
                 throw new MailException('An non Zend\Mail exception occurred', $e->getCode(), $e);
             }
+        } finally {
+            $this->mailEventParams = [];
         }
 
         return $result;
@@ -441,5 +447,16 @@ class MailService implements MailServiceInterface, EventManagerAwareInterface, M
     public function getRenderer()
     {
         return $this->renderer;
+    }
+    
+    /**
+     * @param $params array|\ArrayAccess|object
+     *
+     * @return $this
+     */
+    public function setMailEventParams($params)
+    {
+        $this->mailEventParams = $params;
+        return $this;
     }
 }
