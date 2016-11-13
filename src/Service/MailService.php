@@ -128,6 +128,9 @@ class MailService implements MailServiceInterface, EventManagerAwareInterface, M
         if (isset($result)) {
             $event->setResult($result);
         }
+        if (!empty($this->mailEventParams)) {
+            $event->setParams($this->mailEventParams);
+        }
         return $event;
     }
 
