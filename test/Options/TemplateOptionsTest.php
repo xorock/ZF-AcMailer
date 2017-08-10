@@ -2,7 +2,7 @@
 namespace AcMailerTest\Options;
 
 use AcMailer\Options\TemplateOptions;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class TemplateOptionsTest
@@ -62,7 +62,7 @@ class TemplateOptionsTest extends TestCase
     {
         /* @var TemplateOptions $child */
         foreach ($children as $child) {
-            $this->assertInstanceOf('AcMailer\Options\TemplateOptions', $child);
+            $this->assertInstanceOf(TemplateOptions::class, $child);
             $this->recursiveChildAssert($child->getChildren());
         }
     }

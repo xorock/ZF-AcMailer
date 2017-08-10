@@ -4,7 +4,7 @@ namespace AcMailerTest\Options;
 use AcMailer\Options\BodyOptions;
 use AcMailer\Options\TemplateOptions;
 use AcMailer\Service\MailServiceInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class BodyOptionsTest extends TestCase
 {
@@ -23,7 +23,7 @@ class BodyOptionsTest extends TestCase
         $this->assertFalse($this->bodyOptions->getUseTemplate());
         $this->assertEquals('', $this->bodyOptions->getContent());
         $this->assertEquals(MailServiceInterface::DEFAULT_CHARSET, $this->bodyOptions->getCharset());
-        $this->assertInstanceOf('AcMailer\Options\TemplateOptions', $this->bodyOptions->getTemplate());
+        $this->assertInstanceOf(TemplateOptions::class, $this->bodyOptions->getTemplate());
     }
 
     public function testSetCharset()
@@ -40,7 +40,7 @@ class BodyOptionsTest extends TestCase
         $this->assertSame($expected, $this->bodyOptions->getTemplate());
 
         $this->bodyOptions->setTemplate([]);
-        $this->assertInstanceOf('AcMailer\Options\TemplateOptions', $this->bodyOptions->getTemplate());
+        $this->assertInstanceOf(TemplateOptions::class, $this->bodyOptions->getTemplate());
     }
 
     /**

@@ -5,7 +5,7 @@ use AcMailer\Options\Factory\MailOptionsAbstractFactory;
 use AcMailer\Options\MailOptions;
 use AcMailerTest\ServiceManager\ServiceManagerMock;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class MailOptionsFactoryTest
@@ -57,7 +57,7 @@ class MailOptionsAbstractFactoryTest extends TestCase
             $this->serviceLocator,
             'acmailer.mailoptions.default'
         );
-        $this->assertInstanceOf('AcMailer\Options\MailOptions', $mailOptions);
+        $this->assertInstanceOf(MailOptions::class, $mailOptions);
         $this->assertEquals(
             [$services['Config']['acmailer_options']['default']['message_options']['to']],
             $mailOptions->getMessageOptions()->getTo()
@@ -82,7 +82,7 @@ class MailOptionsAbstractFactoryTest extends TestCase
             ]),
             'acmailer.mailoptions.invalid'
         );
-        $this->assertInstanceOf('AcMailer\Options\MailOptions', $mailOptions);
+        $this->assertInstanceOf(MailOptions::class, $mailOptions);
     }
 
     public function testExtendOptions()
@@ -133,7 +133,7 @@ class MailOptionsAbstractFactoryTest extends TestCase
             $this->serviceLocator,
             'acmailer.mailoptions.default'
         );
-        $this->assertInstanceOf('AcMailer\Options\MailOptions', $mailOptions);
+        $this->assertInstanceOf(MailOptions::class, $mailOptions);
     }
 
     public function testExtendsSingleChaining()
@@ -162,7 +162,7 @@ class MailOptionsAbstractFactoryTest extends TestCase
             $this->serviceLocator,
             'acmailer.mailoptions.foo'
         );
-        $this->assertInstanceOf('AcMailer\Options\MailOptions', $mailOptions);
+        $this->assertInstanceOf(MailOptions::class, $mailOptions);
         $this->assertEquals(
             [
                 'to'   => [['foo@bar.com']],
@@ -208,7 +208,7 @@ class MailOptionsAbstractFactoryTest extends TestCase
             $this->serviceLocator,
             'acmailer.mailoptions.bar'
         );
-        $this->assertInstanceOf('AcMailer\Options\MailOptions', $mailOptions);
+        $this->assertInstanceOf(MailOptions::class, $mailOptions);
         $this->assertEquals(
             [
                 'to' => [['noone@here.com']],
